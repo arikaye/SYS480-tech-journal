@@ -1,0 +1,7 @@
+{
+    "server_name" : "Vcenter-ari",
+    "folder_name" : "BASE-VMS",
+    "vmhost_name" : "super12.cyber.local",
+    "dstore_name" : "datastore2-EXSI12"
+
+}
