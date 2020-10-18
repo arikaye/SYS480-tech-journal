@@ -11,6 +11,7 @@ function setNetwork {
 
     Write-Host 'Here is a list of all interfaces on this vm'
     $interfaces = $vm | Get-NetworkAdapter
+    foreach ($interface in $interfaces){Write-Host $interface.name $interface.Type $interface.NetworkName $interface.MacAddress $interface.WakeOnLanEnabled}
     $number = Read-Host -Prompt 'which inferface do you want to edit? (type (#) starting at 0'
     $netname = Read-Host -Prompt 'what interface do you want to set to?'
     $interfaces[$number] | Set-NetworkAdapter -NetworkName $netname    
