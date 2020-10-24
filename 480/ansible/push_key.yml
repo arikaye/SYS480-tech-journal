@@ -1,0 +1,28 @@
+- name: push key
+  hosts: centos_server
+  tasks:
+    - name: create the .ssh directory if it is not there
+      file:
+        path: /home/deployer/.ssh
+        state: directory
+        mode: 0700
+    - name: create authorized_keys file
+      file:
+        path: /home/deployer/.ssh/authorized_keys
+        state: touch
+        mode: 0644
+    - name: copy over key block and append to authorized_keys
+      blockinfile:
+        dest: /home/deployer/.ssh/authorized_keys
+        block:
+    - name: create sudoers dropin file for 480
+      file:
+        dest: /etc/sudoers.d/480
+        state: touch
+        mode: 0440
+      become: yes
+    - name: create deployer entry in /etc/sudoers.d/480  
+      blockinfile:
+        dest: /etc/sudoers.d/480
+        block: "deployer  ALL=(ALL) NOPASSWD: ALL"
+      become: yes 
