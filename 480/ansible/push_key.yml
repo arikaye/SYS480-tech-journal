@@ -1,20 +1,20 @@
 - name: push key
-  hosts: centos_server
+  hosts: ubuntu_server
   tasks:
     - name: create the .ssh directory if it is not there
       file:
-        path: /home/deployer/.ssh
+        path: /home/ari/.ssh
         state: directory
         mode: 0700
     - name: create authorized_keys file
       file:
-        path: /home/deployer/.ssh/authorized_keys
+        path: /home/ari/.ssh/authorized_keys
         state: touch
         mode: 0644
     - name: copy over key block and append to authorized_keys
       blockinfile:
-        dest: /home/deployer/.ssh/authorized_keys
-        block:
+        dest: /home/ari/.ssh/authorized_keys
+        block: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDB4CO2EvxqAHN5nnoCICBkE6VL0yeLNAVjmlJ3T6AZmrE0hnPkvorBoLu/OLERr9gML1hIxa88BCcPlc8r0MmRr8J+bX3cNdOta8mOx0k37W0mazJHEfBWQH32SoSOn4pgmZab+nmKM586nTNP7Kweo3Iac8j4BmyVOTVpWz00xuBL03vfDFHeyNM4XGC7RsbMtIX/f4zMOeAztQlPWqj0h4gmHqrRFMkP5ML1LTpt7Ua63pYfVNIT+SWeVOwr79+PkXvkVT2pHnOTGhrZ68XMwP/adYGn3T95kwJwy1/Q/C1DoKsDTHBS8OvxRjyiEnGc8gRIo9Lxt460urNdROqq9GTmMEewzcd8BHaQUE3vAi37plZd2bHfdmy6a4VJpqsDgSp4sVSNhyMdXqdaJT3YvOjforHh7SGQUi6Mw4s3fxWbUmwXoBPyfCT1NYpdZuvyBPsmC6tDYRs1jYzpc6qmV0SL+KcKlt3DiGVbw3cMoCy88BIyaNc0DrjG5tpNG7Ye58yKnWxYzai5Z5qecmk7wlGwD6iObFRATBVFFEGp6z0ZP8R+CC6YvdJEIFj5acQWziZiVlEOf/9zmBBRk4/QFaaj9poMxLU4D/bD1L2+/dhJfsEzoQaNyVgJcVbvBPwAk6XyTdhV3X6EwOHEGuStTXBdQfxcRgD4pIHmvst/qw== deployer@ari
     - name: create sudoers dropin file for 480
       file:
         dest: /etc/sudoers.d/480
@@ -24,5 +24,5 @@
     - name: create deployer entry in /etc/sudoers.d/480  
       blockinfile:
         dest: /etc/sudoers.d/480
-        block: "deployer  ALL=(ALL) NOPASSWD: ALL"
+        block: "ari  ALL=(ALL) NOPASSWD: ALL"
       become: yes 

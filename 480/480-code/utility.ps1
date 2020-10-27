@@ -27,18 +27,30 @@ function getIP {
     Write-Host $ips = $vm.Guest.IPAddress[0] hostname=$vm.name
 }
 
+function getIPs {
+
+    Write-Host 'Here is a list of all VMs on this server'
+    $VMs = Get-VM
+    foreach ($VM in $VMs){Write-Host $ip = $vm.Guest.IPAddress[0] hostname=$vm.name}
+    
+   
+}
 
 Write-Host 'Would you like to..'
 Write-Host '[A] change network interface'
 Write-Host '[B] get a ip address of a turned on VM'
+Write-Host '[C] get a ip address of all available VMs'
 
-$option = Read-Host -Prompt 'what would you like to do? enter the letter of the funtion you wish to preform'
+$option = Read-Host -Prompt 'what would you like to do? enter the letter of the function you wish to preform'
 
 if ($option -eq 'A') {
     setNetwork
 }
 elseif ($option -eq 'B') {
     getIP    
+}
+elseif ($option -eq 'C') {
+    getIPs    
 }
 else {
     Write-Host 'that is not a vaild option'

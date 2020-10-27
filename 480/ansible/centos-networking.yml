@@ -1,4 +1,4 @@
-name: centos-networking
+- name: centos-networking
   hosts: centos_server
   tasks:
     - name: set host name
@@ -13,7 +13,7 @@ name: centos-networking
       become: yes
 
     - name: push over the networking script
-      templates:
+      template:
         src: files/centos/ifcfg-script.j2
         dest: '/etc/sysconfig/network-scripts/ifcfg-{{device}}'
         mode: 0644
