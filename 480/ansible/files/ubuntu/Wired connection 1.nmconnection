@@ -1,6 +1,7 @@
 [connection]
 id=Wired connection 1
 type=ethernet
+uuid=
 autoconnect-priority=-999
 interface-name=ens160
 permitions=
@@ -9,11 +10,11 @@ permitions=
 mac-address-blacklist=
 
 [ipv4]
-address1="{{ lan_ip }}"/24,"{{ gateway }}"
-dns="{{ name_server }}"
-dns-search="{{ domain }}"
+address1={{ lan_ip }}/24,{{ gateway }}
+dns={{ name_server }}
+dns-search={{ domain }}
 method=manual
-route1="{{ lan_ip }}"/24,"{{ gateway }}",100
+route1={{ lan_ip }}/24,{{ gateway }},100
 
 [ipv6]
 addr-gen-mode=stable-privacy
