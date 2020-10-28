@@ -1,4 +1,4 @@
--name: ubuntu-networking
+- name: ubuntu-networking
   hosts: ubuntu_server
   tasks:
     - name: set host name
@@ -14,8 +14,8 @@
 
     - name: push over the networking script
       template:
-        src: files/centos/ifcfg-script.j2
-        dest: '/etc/sysconfig/network-scripts/ifcfg-{{device}}'
+        src: files/ubuntu/Wired connection 1.nmconnection
+        dest: '/etc/NetworkManager/system-connections/'
         mode: 0644
         owner: root
         group: root

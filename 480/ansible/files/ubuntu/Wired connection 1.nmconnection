@@ -1,0 +1,23 @@
+[connection]
+id=Wired connection 1
+type=ethernet
+autoconnect-priority=-999
+interface-name=ens160
+permitions=
+
+[ethernet]
+mac-address-blacklist=
+
+[ipv4]
+address1="{{ lan_ip }}"/24,"{{ gateway }}"
+dns="{{ name_server }}"
+dns-search="{{ domain }}"
+method=manual
+route1="{{ lan_ip }}"/24,"{{ gateway }}",100
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+ip6-privacy=0
+method=auto
+
