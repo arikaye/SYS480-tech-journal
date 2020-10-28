@@ -1,0 +1,14 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens192:
+     dhcp4: no
+     addresses: 
+     - {{ lan_ip }}/{{ prefix }}
+     gateway4: {{ gateway }}
+     nameservers:
+       addresses: 
+       - {{ name_server }}
+       search: 
+       - {{ domain }}
