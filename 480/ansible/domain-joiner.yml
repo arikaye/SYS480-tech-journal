@@ -1,0 +1,31 @@
+- name: Join domain
+  hosts: domain_controller
+  gather_facts: no
+  vars_prompt: 
+  - name: domianadm
+    prompt: what is the domain andministrator login
+    private: no
+
+  - name: domainpass
+    prompt: what is the password for the account
+    private: no
+
+  tasks:
+    - name: Change the DNS Server to blue_dns
+
+
+    - name: join domain
+
+
+    - name: reboot if needed
+      when: 
+      win_reboot:
+        connect_timeout: 15
+        post_reboot_delay: 15
+        reboot_timeout: 200
+        
+
+
+
+
+

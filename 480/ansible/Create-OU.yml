@@ -1,0 +1,28 @@
+- name: Create OU
+  hosts: domain_controller
+  gather_facts: no
+    tasks:
+    - name: Create blue12 OU
+      win_domain_group:
+        organizational_unit: 
+
+    - name: Create Accounts OU
+      win_domain_group:
+        organizational_unit:
+
+    - name: Create Groups OU in Accounts OU
+      win_domain_group:
+        organizational_unit:
+        path:
+
+    - name: Create Computers OU
+      win_domain_group:
+        organizational_unit:
+
+    - name: Create Servers OU
+      win_domain_group:
+        organizational_unit:
+
+    - name: Create workstations OU
+      win_domain_group:
+        organizational_unit:

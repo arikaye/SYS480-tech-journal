@@ -1,0 +1,9 @@
+- name: high preformence power
+  hosts: all
+  tasks:
+    - name: ping
+      win_ping:
+
+    - name: high power
+      win_power_plan:
+       -  name: high preformence

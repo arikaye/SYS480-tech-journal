@@ -1,0 +1,38 @@
+- name: install software
+  hosts: windows_workstations
+  gather_facts: no
+  tasks:
+  - name: 7zip
+    win_chocolatey:
+      name: 7zip
+      state: present
+
+  - name: chrome
+    win_chocolatey:
+      name: Google_Chrome
+      state: present
+
+  - name: git
+    win_chocolatey:
+      name: Git
+      state: present
+
+  - name: Putty
+    win_chocolatey:
+      name: Putty
+      state: present
+
+  - name: notepad++
+    win_chocolatey:
+      name: Notepad++
+      state: present
+
+  - name: python3
+    win_chocolatey:
+      name: Pyton3
+      state: present
+
+  - name: visual studio code
+    win_chocolatey:
+      name: Visual Studio Code
+      state: present

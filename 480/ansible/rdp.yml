@@ -1,0 +1,8 @@
+- name: rdp
+  hosts: all
+  tasks:
+    - name: rdp
+      win_group_membership:
+        name: Remote Desktop Users
+        members:
+          - Cyber\Domain Users
