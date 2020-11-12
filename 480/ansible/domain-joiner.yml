@@ -1,28 +1,35 @@
 - name: Join domain
-  hosts: domain_controller
+  hosts: windows_workstation
   gather_facts: no
   vars_prompt: 
-  - name: domianadm
+  - name: domainadm
     prompt: what is the domain andministrator login
     private: no
 
   - name: domainpass
     prompt: what is the password for the account
-    private: no
+    private: yes
 
   tasks:
-    - name: Change the DNS Server to blue_dns
-
-
-    - name: join domain
-
+    - name: Configure Primary DNS Server
+      win_dns_client:
+        adapter_names: "{{ device }}"
+        ipv4_addresses: "10.0.5.5"
+  
+    - name: Join to the domain
+      win_domain_membership:
+        dns_domain_name: "blue12"
+        hostname: "{{ hostname }}"
+        domain_admin_user: "{{ domainadm }}"
+        domain_admin_password: "{{ domainpass }}"
+        domain_ou_path: "OU=workstations, OU=computers, OU=blue12, dc=blue12, dc=local"
+        state: domain
+      register: domain_state
 
     - name: reboot if needed
-      when: 
       win_reboot:
-        connect_timeout: 15
-        post_reboot_delay: 15
-        reboot_timeout: 200
+      when: domain_state.reboot_required
+
         
 
 

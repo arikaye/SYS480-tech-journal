@@ -1,8 +1,18 @@
 - name: rdp
-  hosts: all
+  hosts: windows_workstation:valhalen
   tasks:
-    - name: rdp
-      win_group_membership:
-        name: Remote Desktop Users
-        members:
-          - Cyber\Domain Users
+  - name: Enable RDP
+    async: 10
+    poll: 0
+    win_shell:
+      Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -Value 0
+  - name: Enable RDP firewall
+    async: 10
+    poll: 0
+    win_shell:
+      Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+  - name: only domain users
+    win_group_membership:
+      name: Remote Desktop Users
+      members: "Domain Admins@blue12"
+      state: present

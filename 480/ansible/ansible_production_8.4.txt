@@ -11,8 +11,8 @@
 device=ens160
 
 [windows_workstation]
-hostname=workstaion-1
-hostname=workstaion-2
+10.0.5.83 hostname=workstaion-1
+10.0.5.84 hostname=workstaion-2
 
 
 [windows:children]
@@ -31,6 +31,10 @@ windows_server
 
 [windows_server:children]
 domain_controller
+valhalen
+
+[valhalen]
+10.0.5.6 hostname=valhalen
 
 
 
@@ -45,15 +49,6 @@ netmask=255.255.255.0
 name_server=10.0.5.2
 domain=blue12.local
 ansible_user=deployer
-
-
-[windows_server:vars]
-gateway=10.0.5.2
-prefix=24
-netmask=255.255.255.0
-name_server=10.0.5.2
-domain=blue12.local
-ansible_user=Administrator
 
 
 [vyos:vars]

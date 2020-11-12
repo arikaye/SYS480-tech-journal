@@ -15,6 +15,11 @@
       password_never_exspires: yes
 
   - name: Change Time Zone
+    win_timezone: 
+      timezone: Eastern Standard Time
+    register: timezone
+
+  - name: Set the hostname
     win_hostname:
       name: "{{ hostname }}"
     

@@ -24,4 +24,4 @@ ansible_connection=network_cli
 ansible_network_os=vyos
 shared_network_name="Blue12"
 dhcp_subnet="10.0.5.0/24"
-static_map_name="dc-blue12"
+static_map_name="valhalen"

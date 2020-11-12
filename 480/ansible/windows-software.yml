@@ -2,37 +2,37 @@
   hosts: windows_workstations
   gather_facts: no
   tasks:
-  - name: 7zip
+  - name: Install 7zip
     win_chocolatey:
       name: 7zip
       state: present
 
-  - name: chrome
+  - name: Install chrome
     win_chocolatey:
       name: Google_Chrome
       state: present
 
-  - name: git
+  - name: Install git
     win_chocolatey:
       name: Git
       state: present
 
-  - name: Putty
+  - name: Install Putty
     win_chocolatey:
       name: Putty
       state: present
 
-  - name: notepad++
+  - name: Install notepad++
     win_chocolatey:
       name: Notepad++
       state: present
 
-  - name: python3
+  - name: Install python3
     win_chocolatey:
       name: Pyton3
       state: present
 
-  - name: visual studio code
+  - name: Install visual studio code
     win_chocolatey:
       name: Visual Studio Code
       state: present

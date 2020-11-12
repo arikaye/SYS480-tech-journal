@@ -1,28 +1,39 @@
-- name: Create OU
+- name: Create OUs
   hosts: domain_controller
   gather_facts: no
-    tasks:
+  tasks:
     - name: Create blue12 OU
-      win_domain_group:
-        organizational_unit: 
+      win_dsc:
+        resource_name: New-ADOrganizationalUnit
+        name: "blue12"
+        path: "dc={{ domain }}, dc=local" 
 
     - name: Create Accounts OU
-      win_domain_group:
-        organizational_unit:
+      win_dsc:
+        resource_name: New-ADOrganizationalUnit
+        name: "Accounts"
+        path: "OU=blue12, dc={{ domain }}, dc=local" 
 
     - name: Create Groups OU in Accounts OU
-      win_domain_group:
-        organizational_unit:
-        path:
+      win_dsc:
+        resource_name: New-ADOrganizationalUnit
+        name: "Groups"
+        path: "OU=Accounts, OU=blue12, dc={{ domain }}, dc=local"
 
     - name: Create Computers OU
-      win_domain_group:
-        organizational_unit:
+      win_dsc:
+        resource_name: New-ADOrganizationalUnit
+        name: "Computers"
+        path: "OU=blue12, dc={{ domain }}, dc=local"
 
-    - name: Create Servers OU
-      win_domain_group:
-        organizational_unit:
+    - name: Create Servers OU in computer OU
+      win_dsc:
+        resource_name: New-ADOrganizationalUnit
+        name: "Servers"
+        path: "OU=Computers, OU=blue12, dc={{ domain }}, dc=local"
 
-    - name: Create workstations OU
-      win_domain_group:
-        organizational_unit:
+    - name: Create workstations OU in computer OU
+      win_dsc:
+        resource_name: New-ADOrganizationalUnit
+        name: "Workstations"
+        path: "OU=Computers, OU=blue12, dc={{ domain }}, dc=local"
