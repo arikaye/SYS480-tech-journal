@@ -1,0 +1,21 @@
+- name: new domain
+  hosts: domain_controller
+  gather_facts: no
+  vars_prompt: 
+  - name: name
+    prompt: what is the user name for the new domain admin?
+    private: no
+
+  - name: pass
+    prompt: what is the password for the new domain admin
+    private: yes
+  
+  tasks:
+    - name: add domain admin
+      win_domain_user:
+        name: "{{ name }}"
+        password: "{{ pass }}"
+        state: present
+        path: ou=accounts, ou=blue12, dc=blue12, dc=local
+        group: 
+        - Domain Admins

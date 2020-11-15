@@ -1,0 +1,27 @@
+- name: parscsv
+  hosts: domain_controller
+  vars_prompt:
+  - name: path
+    prompt: Enter the path to your csv file
+    private: no
+  tasks:
+  - name: read csv file
+    read_csv:
+      path: "{{ path }}"
+    register: items
+    delegate_to: localhost
+
+#  - name: an ansible loop
+#    debug:
+#      msg: "{{ item.password }}" - "{{ item.username }}" - "{{ item.group }}"
+#    with_items: "{{ items.list }}"
+
+  
+  - name: add users
+    win_domain_user:
+      name: "{{ item.username }}"
+      password: "{{ item.password }}"
+      state: present
+      path: "ou=accounts, ou=blue12, dc=blue12, dc=local"
+      groups: "{{ item.group }}"
+    with_items: "{{ items.list }}"
