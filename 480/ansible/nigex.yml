@@ -1,0 +1,14 @@
+- name: nginx
+  hosts: aws
+  gather_facts: no
+  tasks:
+  - name: install nginx
+    apt: 
+      name: nginx 
+      state: latest
+    become: true
+
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
